@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+/* app/assets/stylesheets/pages.css.scss */
+@import 'pages';
+
+.page-header {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .greeting {
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  .login-links {
+    margin-top: 10px;
+  }
+  
+  .login-links a {
+    margin-right: 10px;
+    color: #007bff;
+  }
+  
