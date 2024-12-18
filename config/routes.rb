@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "clothes/catalog"
   root 'pages#home'
 
   devise_for :users
