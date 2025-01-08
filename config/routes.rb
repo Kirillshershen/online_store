@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :cloth, only: [:show], controller: 'clothes'
+
   get "persons/profile"
   get "pages/home"
   get "users/sign_out"

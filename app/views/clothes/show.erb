@@ -1,0 +1,24 @@
+
+<h1><%= @cloth.name %></h1>
+<p><%= @cloth.description %></p>
+<p><strong>Price:</strong> $<%= @cloth.price %></p>
+<h3>Доступные размеры:</h3>
+<ul>
+  <% @sizes.each do |size| %>
+    <li><%= size.size_type %> — <%= size.size_value %></li>
+  <% end %>
+</ul>
+
+<a href="<%= clothes_catalog_path %>">Back to catalog</a>
+<a>Похожие</a>
+<div class="catalog-container">
+      <% @clothes.each do |cloth| %>
+        <div class="catalog-item">
+          <h3><%= link_to cloth.name, cloth_path(cloth) %></h3>
+          <p class="price">Цена: <%= cloth.price %> ₽</p>
+          <p>Описание: <%= cloth.description %></p>
+
+          <p>Сезон: <%= cloth.season %></p>
+        </div>
+      <% end %>
+  </div>

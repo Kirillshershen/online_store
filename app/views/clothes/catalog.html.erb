@@ -1,6 +1,23 @@
+<% if @show_catalog %>
+  <h2>Каталог для типа: <%= @cloth_type.name %></h2>
+  <%= link_to "Вернуться к выбору типа одежды", clothes_catalog_path, class: "back-button" %>
 
+  <div class="catalog-container">
+      <% @clothes.each do |cloth| %>
+        <div class="catalog-item">
+          <h3><%= link_to cloth.name, cloth_path(cloth) %></h3>
+          <p class="price">Цена: <%= cloth.price %> ₽</p>
+          <p>Описание: <%= cloth.description %></p>
+          <p>Сезон: <%= cloth.season %></p>
+        </div>
+      <% end %>
+  </div>
+<% else %>
+  <h2>Выберите тип одежды</h2>
 
-<% @clothes.each do |cloth| %>
-    <div>Название одежки: <%= cloth.name%><div>
-    
-    <%end%>
+  <div class="cloth-types">
+    <% @cloth_types.each do |cloth_type| %>
+      <%= link_to cloth_type.name, clothes_catalog_path(cloth_type_id: cloth_type.id) %><br>
+    <% end %>
+  </div>
+<% end %>

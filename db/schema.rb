@@ -10,18 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_18_102300) do
-  create_table "clothes", force: :cascade do |t|
+ActiveRecord::Schema[7.2].define(version: 2025_01_08_114704) do
+  create_table "cloth_types", force: :cascade do |t|
     t.string "name"
-    t.float "price"
-    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "cloths", force: :cascade do |t|
+  create_table "clothes", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.string "description"
+    t.string "season"
+    t.integer "cloth_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cloth_type_id"], name: "index_clothes_on_cloth_type_id"
+  end
+
+  create_table "sizes", force: :cascade do |t|
+    t.string "size_type", null: false
+    t.integer "size_value", null: false
+    t.integer "cloth_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cloth_type_id"], name: "index_sizes_on_cloth_type_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,9 +45,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_18_102300) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "phone"
-    t.string "otp_code"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "clothes", "cloth_types"
+  add_foreign_key "sizes", "cloth_types"
 end

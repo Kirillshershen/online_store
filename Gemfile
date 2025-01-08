@@ -58,4 +58,6 @@ end
 
 gem 'devise'
 gem 'sassc-rails'
+#для создания экземпляров одежды
+gem 'faker'
    
